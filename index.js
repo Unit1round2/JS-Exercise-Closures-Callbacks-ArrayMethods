@@ -67,7 +67,7 @@ function processLength(list, callback) {
  * should return 'barbar'.
 */
 function processLastItem(stringList, callback) {
-  return callback(stringList.length -1);
+  return callback(stringList[stringList.length -1]);
 }
 
 /**
@@ -159,10 +159,11 @@ function lowerCaseStrings(strings) {
   const lowerCase = [];
   strings.forEach(function(item){
     return lowerCase.push(item.toLowerCase());
+    
   })
-  
-  
+  return lowerCase;
 }
+
 
 /**
  * ### Challenge `isItAnApple`
@@ -179,8 +180,15 @@ function lowerCaseStrings(strings) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(strings) {
+  const apple = strings.map(function(item){
+    if(item === 'apple'){
+      return true
+    } else {
+      return false;
+    }
+  })
+  return apple;
 }
 
 /**
@@ -199,10 +207,13 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
-}
-
+function removeApple(strings) {
+  const appleGone = strings.filter(function(element){
+    return element !== 'apple';
+  })
+  return appleGone;
+};
+  
 /**
  * ### Challenge `stringSmash`
  * 
@@ -218,8 +229,11 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
+function stringSmash(strings) {
+  const smash = strings.reduce(function(accumulator, item){
+    return accumulator + item;
+  })
+  return smash;
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
@@ -237,8 +251,11 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  const newRunners = runners.map(function(item){
+    return `${runners.last_name},${runners.first_name}`
+  })
+  return newRunners;
 }
 
 /**
