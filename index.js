@@ -132,8 +132,13 @@ function processProduct(num1, num2, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  const deduped = list.filter(function(element,item){
+    if(list.indexOf(element) === item){
+      return element
+    }
+  });
+  return deduped;
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -293,8 +298,8 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, tShirtSize) {
- const tRunners = runners.filter(function(element){
-   return element.shirt_size === "S", "M", "L", "XL", "2XL", "3XL";
+  const tRunners = runners.filter(function(element){
+   return element.shirt_size === tShirtSize;
  }) 
  return tRunners;
 }
@@ -310,8 +315,11 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  const tallyTotal = runners.reduce(function(acc, item){
+    return acc + item.donation;
+  }, 0);
+  return tallyTotal
 }
 
 /////////////// CLOSURES ///////////////
@@ -324,9 +332,9 @@ function tallyUpDonations(/* CODE HERE */) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * 1 has a counter
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *     1
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
 */
@@ -369,8 +377,15 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(limit) {
+  let count = -1;
+  return function(){
+  if(count === limit){
+    count = -1;
+  };
+   return ++count;
+  }; 
+  
 }
 
 /////////////// END OF CHALLENGE ///////////////
